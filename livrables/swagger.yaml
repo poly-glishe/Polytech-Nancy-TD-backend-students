@@ -37,6 +37,20 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Task'
+        get :
+            tags : [ tasks ]
+            summary : Récupérer toutes les tâches
+            description: Récupérer toutes les tâches sans utiliser l'identifiant
+            operationId: getAllTasks
+            responses :
+                '200' :
+                    description: Tâches trouvées avec succès
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Task'
+                '204':
+                    description: No content
 
     /tasks/{id}:
         parameters:
