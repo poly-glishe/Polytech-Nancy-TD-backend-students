@@ -1,4 +1,6 @@
-package com.example.todoapp;
+package com.example.todoapp.DAO;
+
+import com.example.todoapp.Business.model.Task;
 
 import java.util.HashMap;
 import java.util.Map;
