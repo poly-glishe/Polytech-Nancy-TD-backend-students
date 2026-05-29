@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.sql.*;
 
 /**
  * Data Access Object for {@link Task} model.
@@ -16,7 +17,7 @@ public class TaskDao {
 
     {
         save(new Task(1, "Réviser DS de maths", "Séries numériques et probabilités.", false));
-        save(new Task(2, "Valider mon PIVE", "PIVE Club Poker.", true));
+        save(new Task(2, "Valider mon PIVE", "PIVE Club Info.", true));
         save(new Task(3, "Choisir mon parcours de 4A", "SIR ou SIA ?", false));
     }
 
