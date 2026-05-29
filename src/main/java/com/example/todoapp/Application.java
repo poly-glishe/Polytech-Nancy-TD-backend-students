@@ -75,6 +75,40 @@ public class Application {
         }
         //endregion
 
+        //region manage DELETE /tasks/{id}
+        Matcher n = ID_PATH.matcher(path);
+        if ("DELETE".equals(method) && n.matches()) {
+            int id = Integer.parseInt(n.group(1));
+            Optional<Task> task = dao.findById(id);
+
+            if (task.isPresent()) {
+                dao.deleteById(id);
+                sendResponse(exchange, 204, null);
+            } else {
+                sendResponse(exchange, 404, null);
+            }
+            return;
+        }
+        //endregion
+
+        //region manage PUT /tasks/{id}
+        Matcher p = ID_PATH.matcher(path);
+        if ("PUT".equals(method) && p.matches()) {
+            int id = Integer.parseInt(p.group(1));
+            Optional<Task> task = dao.findById(id);
+
+            if (task.isPresent()) {
+                String body = new String(exchange.getRequestBody().readAllBytes(), UTF_8);
+                Task input = JsonUtils.deserialize(body, Task.class);
+                dao.update(id, input);
+                sendResponse(exchange, 204, null);
+            } else {
+                sendResponse(exchange, 404, null);
+            }
+            return;
+        }
+        //endregion
+
         // Otherwise → 404
         sendResponse(exchange, 404, null);
     }

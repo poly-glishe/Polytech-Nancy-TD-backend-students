@@ -37,5 +37,9 @@ public class TaskDao {
         return Optional.ofNullable(storage.get(id));
     }
 
+    public Optional<Task> deleteById(int id) {return Optional.ofNullable(storage.remove(id));}
+
+    public Optional<Task> update(int id, Task updatedTask) {return Optional.ofNullable(storage.put(id, updatedTask));}
+
     public ArrayList<Task> getAllTasks() {return new ArrayList<Task>(storage.values());}
 }

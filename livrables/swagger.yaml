@@ -75,6 +75,32 @@ paths:
                                 $ref: '#/components/schemas/Task'
                 '404':
                     description: Tâche non trouvée
+
+        put:
+            tags: [ tasks ]
+            summary: Modifier une tâche à partir d’un JSON
+            operationId: updateTask
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Task'
+            responses:
+                '204':
+                    description: Modification réussie
+                '404':
+                    description: Non trouvé
+
+        delete:
+            tags: [ tasks ]
+            summary: Supprimer une tâche par ID
+            operationId: deleteTask
+            responses:
+                '204':
+                    description: Supprimée avec succès
+                '404':
+                    description: Non trouvé
 components:
     schemas:
         Task:
