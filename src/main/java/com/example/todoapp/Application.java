@@ -20,7 +20,6 @@ public class Application {
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
         TaskService taskService = new TaskService();
 
-        // On associe l'URL directement à la méthode handle du service
         server.createContext("/tasks", taskService);
 
         server.setExecutor(null);

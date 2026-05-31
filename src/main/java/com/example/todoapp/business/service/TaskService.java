@@ -21,7 +21,6 @@ public class TaskService implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         try {
-            // Le service passe le relais au contrôleur pour exécuter l'action (GET, POST, etc.)
             TasksController.handleTasks(exchange);
         } catch (Exception e) {
             com.example.todoapp.Application.log.error("Erreur Service", e);
