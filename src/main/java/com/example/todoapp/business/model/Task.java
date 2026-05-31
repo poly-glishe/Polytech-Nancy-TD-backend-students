@@ -1,4 +1,4 @@
-package com.example.todoapp.Business.model;
+package com.example.todoapp.business.model;
 
 /**
  * Task model.

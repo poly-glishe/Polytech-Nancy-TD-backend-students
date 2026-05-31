@@ -1,6 +1,6 @@
 package com.example.todoapp;
 
-import com.example.todoapp.Presentation.TasksController;
+import com.example.todoapp.business.service.TaskService;
 import com.sun.net.httpserver.HttpServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,13 +12,17 @@ import java.net.InetSocketAddress;
  */
 public class Application {
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    public static final Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) throws Exception {
         log.info("In-memory repository initialised");
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/tasks", TasksController::handleTasks);
+        TaskService taskService = new TaskService();
+
+        // On associe l'URL directement à la méthode handle du service
+        server.createContext("/tasks", taskService);
+
         server.setExecutor(null);
         server.start();
         log.info("HTTP server started on http://localhost:8080");
